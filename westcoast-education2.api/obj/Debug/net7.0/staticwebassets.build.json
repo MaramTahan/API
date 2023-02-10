@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "TA/cclhyvnJsPQSzS9BfoilDpZRwURz/3LBn/g0RJDM=",
+  "Source": "westcoast-education2.api",
+  "BasePath": "_content/westcoast-education2.api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
