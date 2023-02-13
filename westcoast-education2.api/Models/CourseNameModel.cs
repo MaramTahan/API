@@ -13,4 +13,5 @@ namespace westcoast_education2.api.Models;
         public ICollection<CoursesModel>? Courses { get; set; }
         public ICollection<StudentsModel>? StudentsCourses { get; set; }
         public ICollection<TeachersModel>? TeachersCourses { get; set; }
+
     }

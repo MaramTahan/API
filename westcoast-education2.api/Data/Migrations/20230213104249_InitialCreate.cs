@@ -11,19 +11,6 @@ namespace westcoasteducation2.api.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "coursesNameData",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    name = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_coursesNameData", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "coursesData",
                 columns: table => new
                 {
@@ -40,12 +27,19 @@ namespace westcoasteducation2.api.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_coursesData", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_coursesData_coursesNameData_nameId",
-                        column: x => x.nameId,
-                        principalTable: "coursesNameData",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "coursesNameData",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    name = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_coursesNameData", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,12 +59,6 @@ namespace westcoasteducation2.api.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_studentData", x => x.userId);
-                    table.ForeignKey(
-                        name: "FK_studentData_coursesNameData_coursesTakenId",
-                        column: x => x.coursesTakenId,
-                        principalTable: "coursesNameData",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,28 +77,7 @@ namespace westcoasteducation2.api.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_teacherData", x => x.TUserId);
-                    table.ForeignKey(
-                        name: "FK_teacherData_coursesNameData_coursesTaughtId",
-                        column: x => x.coursesTaughtId,
-                        principalTable: "coursesNameData",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_coursesData_nameId",
-                table: "coursesData",
-                column: "nameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_studentData_coursesTakenId",
-                table: "studentData",
-                column: "coursesTakenId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_teacherData_coursesTaughtId",
-                table: "teacherData",
-                column: "coursesTaughtId");
         }
 
         /// <inheritdoc />
@@ -120,13 +87,13 @@ namespace westcoasteducation2.api.Data.Migrations
                 name: "coursesData");
 
             migrationBuilder.DropTable(
+                name: "coursesNameData");
+
+            migrationBuilder.DropTable(
                 name: "studentData");
 
             migrationBuilder.DropTable(
                 name: "teacherData");
-
-            migrationBuilder.DropTable(
-                name: "coursesNameData");
         }
     }
 }

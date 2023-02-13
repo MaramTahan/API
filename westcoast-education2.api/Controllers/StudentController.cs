@@ -102,7 +102,7 @@ namespace westcoast_education2.api.Controllers;
 
         [HttpPost("addstudent")]
         public async Task<ActionResult> AddStudent(StudentAddViewModel model){
-             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the student in the system");
+            if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the student in the system");
             var exists = await _context.studentData.SingleOrDefaultAsync(c=> c.userId == model.userId);
             if (exists is not null) return BadRequest($"We have already registered a student with userId {model.userId}");
 

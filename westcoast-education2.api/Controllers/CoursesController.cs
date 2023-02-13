@@ -22,7 +22,7 @@ namespace westcoast_education2.api.Controllers;
         public async Task<ActionResult> List(){
             var result = await _context.coursesData
             .Include(c => c.courseName)
-            .Select(v =>new CoursesListViewModel{
+            .Select(v => new CoursesListViewModel{
                 Id = v.Id,
                 courseNumber = v.courseNumber,
                 nameOfCourse = v.courseName.name ?? "",
@@ -31,6 +31,7 @@ namespace westcoast_education2.api.Controllers;
                 teacher = v.teacher,
                 placeStudy = v.placeStudy
             })
+            
             .ToListAsync();
             return Ok(result);
         }
@@ -56,7 +57,7 @@ namespace westcoast_education2.api.Controllers;
         
         }
 
-        //---------------------------------------------------
+         //---------------------------------------------------
 
         [HttpGet("courseno/{courseNumber}")]
         public async Task<ActionResult> GetBycourseNumber(string courseNumber){
@@ -71,11 +72,11 @@ namespace westcoast_education2.api.Controllers;
                 teacher = v.teacher,
                 placeStudy = v.placeStudy
             })
-            .SingleOrDefaultAsync(v => v.courseNumber! .ToUpper().Trim() == courseNumber.ToUpper().Trim());
+            .SingleOrDefaultAsync(v => v.courseNumber! .Trim() == courseNumber.Trim());
             return Ok(result);
         }
 
-        //---------------------------------------------------
+         //---------------------------------------------------
 
         [HttpGet("name/{nameId}")]
         public async Task<ActionResult> GetByName(string nameId){
@@ -95,7 +96,7 @@ namespace westcoast_education2.api.Controllers;
             return Ok(result);
         }
 
-        //---------------------------------------------------
+         //---------------------------------------------------
 
         [HttpGet("startdate/{startDate}")]
         public async Task<ActionResult> GetByStartDate(string startDate){
@@ -142,33 +143,33 @@ namespace westcoast_education2.api.Controllers;
             return StatusCode(500, "Internet Server Error");
         }
 
-        //---------------------------------------------------
+         // //---------------------------------------------------
 
-        [HttpPut("update/{Id}")]
-        public async Task<ActionResult> UpdateCourse(int Id, CourseUpdateViewModel model){
-            if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the course in the system");
+        // // [HttpPut("update/{Id}")]
+        // // public async Task<ActionResult> UpdateCourse(int Id, CourseUpdateViewModel model){
+        // //     if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the course in the system");
 
-            var course = await _context.coursesData.FindAsync(Id);
-            if (course is  null) return BadRequest($"We cannot find a course in the system with this CourseId ");
+        // //     var course = await _context.coursesData.FindAsync(Id);
+        // //     if (course is  null) return BadRequest($"We cannot find a course in the system with this CourseId ");
 
-            var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.nameOfCourse.ToUpper().Trim());
-            if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.nameOfCourse} in our system");
+        // //     var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.nameOfCourse.ToUpper().Trim());
+        // //     if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.nameOfCourse} in our system");
 
-                course.courseNumber = model.courseNumber;
-                course.courseName = CourseName;
-                course.startDate = model.startDate;
-                course.endDate = model.endDate;
-                course.teacher = model.teacher;
-                course.placeStudy = model.placeStudy;
+        // //         course.courseNumber = model.courseNumber;
+        // //         course.courseName = CourseName;
+        // //         course.startDate = model.startDate;
+        // //         course.endDate = model.endDate;
+        // //         course.teacher = model.teacher;
+        // //         course.placeStudy = model.placeStudy;
 
-                _context.coursesData.Update(course);
-            if (await _context.SaveChangesAsync() > 0){
-                return NoContent();
-            }
-            return StatusCode(500, "Internet Server Error");
-        }
+        // //         _context.coursesData.Update(course);
+        // //     if (await _context.SaveChangesAsync() > 0){
+        // //         return NoContent();
+        // //     }
+        // //     return StatusCode(500, "Internet Server Error");
+        // // }
 
-        //-----------------------------------------------------
+        // //-----------------------------------------------------
 
         [HttpPatch("fullybooked/{Id}")]
         //go to database for mark course as fully booked

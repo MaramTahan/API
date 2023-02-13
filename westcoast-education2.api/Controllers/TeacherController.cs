@@ -38,7 +38,7 @@ namespace westcoast_education2.api.Controllers;
         //---------------------------------------------------
 
         //http://localhost:5004/api/teachers/330
-        [HttpGet("teacher/{TUserId}")]
+        [HttpGet("{TUserId}")]
         public async Task<ActionResult> GetByUserId(int TUserId){
             var result = await _context.teacherData
             .Include(c => c.courseName)
@@ -57,7 +57,7 @@ namespace westcoast_education2.api.Controllers;
 
         //---------------------------------------------------
 
-        [HttpGet("teacher/{email}")]
+        [HttpGet("email/{email}")]
         public async Task<ActionResult> GetByEmail(string email){
             var result = await _context.teacherData
             .Include(c => c.courseName)

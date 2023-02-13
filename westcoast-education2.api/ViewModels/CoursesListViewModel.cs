@@ -11,4 +11,5 @@ namespace westcoast_education2.api.ViewModels;
         public string? endDate { get; set; }
         public string? teacher { get; set; }
         public string? placeStudy { get; set; }
+        public CourseStatusEnum status { get; set; }
     }

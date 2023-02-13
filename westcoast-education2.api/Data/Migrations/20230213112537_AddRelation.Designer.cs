@@ -10,8 +10,8 @@ using westcoast_education2.api.Data;
 namespace westcoasteducation2.api.Data.Migrations
 {
     [DbContext(typeof(WestCoastEducationContext))]
-    [Migration("20230210183127_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230213112537_AddRelation")]
+    partial class AddRelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,35 +134,35 @@ namespace westcoasteducation2.api.Data.Migrations
 
             modelBuilder.Entity("westcoast_education2.api.Models.CoursesModel", b =>
                 {
-                    b.HasOne("westcoast_education2.api.Models.CourseNameModel", "nameOfCourse")
+                    b.HasOne("westcoast_education2.api.Models.CourseNameModel", "courseName")
                         .WithMany("Courses")
                         .HasForeignKey("nameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("nameOfCourse");
+                    b.Navigation("courseName");
                 });
 
             modelBuilder.Entity("westcoast_education2.api.Models.StudentsModel", b =>
                 {
-                    b.HasOne("westcoast_education2.api.Models.CourseNameModel", "nameOfCourse")
+                    b.HasOne("westcoast_education2.api.Models.CourseNameModel", "courseName")
                         .WithMany("StudentsCourses")
                         .HasForeignKey("coursesTakenId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("nameOfCourse");
+                    b.Navigation("courseName");
                 });
 
             modelBuilder.Entity("westcoast_education2.api.Models.TeachersModel", b =>
                 {
-                    b.HasOne("westcoast_education2.api.Models.CourseNameModel", "nameOfCourse")
+                    b.HasOne("westcoast_education2.api.Models.CourseNameModel", "courseName")
                         .WithMany("TeachersCourses")
                         .HasForeignKey("coursesTaughtId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("nameOfCourse");
+                    b.Navigation("courseName");
                 });
 
             modelBuilder.Entity("westcoast_education2.api.Models.CourseNameModel", b =>

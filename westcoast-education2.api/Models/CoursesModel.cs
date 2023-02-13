@@ -1,5 +1,3 @@
-
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,9 +15,12 @@ namespace westcoast_education2.api.Models;
         public string? placeStudy { get; set; }
         public CourseStatusEnum status { get; set; }
 
-        //The one side..
-        //Navigation properties
-        //Create connections between related classes..
+       //The one side..
+       //Navigation properties
+       //Create connections between related classes..
         [ForeignKey ("nameId")]
         public CourseNameModel courseName { get; set; } = new CourseNameModel();
+
     }
+
+

@@ -15,8 +15,9 @@ namespace westcoast_education2.api.Models;
         public int coursesTaughtId { get; set; }
 
         //The one side..
-        //Navigation properties
-        //Create connections between related classes..
+       //Navigation properties
+       //Create connections between related classes..
         [ForeignKey ("coursesTaughtId")]
         public CourseNameModel courseName { get; set; } = new CourseNameModel();
+
     }
