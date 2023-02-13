@@ -5,8 +5,6 @@ namespace westcoast_education2.api.ViewModels;
 
     public class TeacherAddViewModel
     {
-        [Required(ErrorMessage = "UserId required")]
-        public int TUserId{ get; set; }
 
         [Required(ErrorMessage = "FirstName required")]
         public string? firstName { get; set; }

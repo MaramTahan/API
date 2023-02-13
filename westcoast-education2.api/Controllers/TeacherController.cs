@@ -79,14 +79,14 @@ namespace westcoast_education2.api.Controllers;
         [HttpPost("addTeacher")]
         public async Task<ActionResult> AddTeacher(TeacherAddViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the teacher in the system");
-            var exists = await _context.teacherData.SingleOrDefaultAsync(c=> c.TUserId == model.TUserId);
-            if (exists is not null) return BadRequest($"We have already registered a teacher with userId {model.TUserId}");
+
+            var exists = await _context.teacherData.SingleOrDefaultAsync(c=> c.email!.ToUpper().Trim() == model.email!.ToUpper().Trim());
+            if (exists is not null) return BadRequest($"We have already registered a teacher with userId {model.email}");
 
             var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.coursesTaughtName.ToUpper().Trim());
             if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.coursesTaughtName} in our system");
 
             var teacher = new TeachersModel{
-                TUserId = model.TUserId,
                 firstName = model.firstName,
                 lastName = model.lastName,
                 email = model.email,
@@ -139,6 +139,19 @@ namespace westcoast_education2.api.Controllers;
             })
             .SingleOrDefaultAsync(v => v.TUserId == TUserId);
             return Ok(result);
+        }
+        //---------------------------------------------------
+        [HttpDelete("delete/{TUserId}")]
+        public async Task<ActionResult> DeleteTeacher(int TUserId){
+            var teacher = await _context.teacherData.FindAsync(TUserId);
+            if (teacher is null) return NotFound($"We can't find any teacher with teacherID: {TUserId}");
+
+            _context.teacherData.Remove(teacher);
+            if (await _context.SaveChangesAsync() > 0)
+        {
+            return NoContent();
+        }
+        return StatusCode(500, "Internal Server Error");
         }
         //---------------------------------------------------
     }

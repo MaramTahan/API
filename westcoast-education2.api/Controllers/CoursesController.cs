@@ -121,14 +121,16 @@ namespace westcoast_education2.api.Controllers;
         [HttpPost("addCourse")]
         public async Task<ActionResult>  AddCourse(CourseAddViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the course in the system");
-            var exists = await _context.coursesData.SingleOrDefaultAsync(c=> c.Id == model.Id);
-            if (exists is not null) return BadRequest($"We have already registered a course with courseId {model.Id}");
 
+            //We need to check that the course is not already registered in the system...
+            var exists = await _context.coursesData.SingleOrDefaultAsync(c => c.courseNumber! .Trim() == model.courseNumber!.Trim());
+            if (exists is not null) return BadRequest($"We have already registered a course with CourseNumber {model.courseNumber}");
+
+            // Check that the courseName is in the system...
             var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.nameOfCourse.ToUpper().Trim());
             if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.nameOfCourse} in our system");
 
             var course = new CoursesModel{
-                Id = model.Id,
                 courseNumber = model.courseNumber,
                 courseName = CourseName,
                 startDate = model.startDate,
@@ -143,39 +145,40 @@ namespace westcoast_education2.api.Controllers;
             return StatusCode(500, "Internet Server Error");
         }
 
-         // //---------------------------------------------------
+         //---------------------------------------------------
 
-        // // [HttpPut("update/{Id}")]
-        // // public async Task<ActionResult> UpdateCourse(int Id, CourseUpdateViewModel model){
-        // //     if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the course in the system");
+        [HttpPut("update/{Id}")]
+        public async Task<ActionResult> UpdateCourse(int Id, CourseUpdateViewModel model){
+            if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the course in the system");
 
-        // //     var course = await _context.coursesData.FindAsync(Id);
-        // //     if (course is  null) return BadRequest($"We cannot find a course in the system with this CourseId ");
+            var course = await _context.coursesData.FindAsync(Id);
+            if (course is  null) return BadRequest($"We cannot find a course in the system with this CourseId ");
 
-        // //     var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.nameOfCourse.ToUpper().Trim());
-        // //     if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.nameOfCourse} in our system");
+            var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.nameOfCourse.ToUpper().Trim());
+            if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.nameOfCourse} in our system");
 
-        // //         course.courseNumber = model.courseNumber;
-        // //         course.courseName = CourseName;
-        // //         course.startDate = model.startDate;
-        // //         course.endDate = model.endDate;
-        // //         course.teacher = model.teacher;
-        // //         course.placeStudy = model.placeStudy;
+                course.courseNumber = model.courseNumber;
+                course.courseName = CourseName;
+                course.startDate = model.startDate;
+                course.endDate = model.endDate;
+                course.teacher = model.teacher;
+                course.placeStudy = model.placeStudy;
 
-        // //         _context.coursesData.Update(course);
-        // //     if (await _context.SaveChangesAsync() > 0){
-        // //         return NoContent();
-        // //     }
-        // //     return StatusCode(500, "Internet Server Error");
-        // // }
+                _context.coursesData.Update(course);
+            if (await _context.SaveChangesAsync() > 0){
+                return NoContent();
+            }
+            return StatusCode(500, "Internet Server Error");
+        }
 
-        // //-----------------------------------------------------
+         //-----------------------------------------------------
 
         [HttpPatch("fullybooked/{Id}")]
         //go to database for mark course as fully booked
         public async Task<ActionResult> MarkAsFullyBooked(int Id){
             var course = await _context.coursesData.FindAsync(Id);
             if (course is null) return NotFound($"We can't find any course with courseID: {Id}");
+
             course.status = CourseStatusEnum.fullybooked;
             _context.coursesData.Update(course);
             if (await _context.SaveChangesAsync() > 0)
@@ -194,6 +197,20 @@ namespace westcoast_education2.api.Controllers;
             if (course is null) return NotFound($"We can't find any course with courseID: {Id}");
             course.status = CourseStatusEnum.Available;
             _context.coursesData.Update(course);
+            if (await _context.SaveChangesAsync() > 0)
+        {
+            return NoContent();
+        }
+        return StatusCode(500, "Internal Server Error");
+        }
+        //---------------------------------------------------
+
+        [HttpDelete("delete/{Id}")]
+        public async Task<ActionResult> DeleteCourse(int Id){
+            var course = await _context.coursesData.FindAsync(Id);
+            if (course is null) return NotFound($"We can't find any course with courseID: {Id}");
+
+            _context.coursesData.Remove(course);
             if (await _context.SaveChangesAsync() > 0)
         {
             return NoContent();

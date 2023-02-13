@@ -103,14 +103,14 @@ namespace westcoast_education2.api.Controllers;
         [HttpPost("addstudent")]
         public async Task<ActionResult> AddStudent(StudentAddViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the student in the system");
-            var exists = await _context.studentData.SingleOrDefaultAsync(c=> c.userId == model.userId);
-            if (exists is not null) return BadRequest($"We have already registered a student with userId {model.userId}");
+
+            var exists = await _context.studentData.SingleOrDefaultAsync(c=> c.personNu!.ToUpper().Trim() == model.personNu!.ToUpper().Trim());
+            if (exists is not null) return BadRequest($"We have already registered a student with personNu {model.personNu}");
 
             var CourseName = await _context.coursesNameData.SingleOrDefaultAsync(c => c.name!.ToUpper().Trim() == model.coursesTakenName.ToUpper().Trim());
             if(CourseName is null) return NotFound ($"We could not find any NameOfCourse with the name {model.coursesTakenName} in our system");
 
             var student = new StudentsModel{
-                userId = model.userId,
                 firstName = model.firstName,
                 lastName = model.lastName,
                 personNu = model.personNu,
@@ -131,6 +131,7 @@ namespace westcoast_education2.api.Controllers;
         [HttpPut("update/{userId}")]
         public async Task<ActionResult> UpdateStudent(int userId, StudentUpdateViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the student in the system");
+            
             var student = await _context.studentData.FindAsync(userId);
             if (student is  null) return BadRequest($"We cannot find a student in the system with this userId ");
 
@@ -166,5 +167,19 @@ namespace westcoast_education2.api.Controllers;
             return Ok(result);
         }
 
+        //---------------------------------------------------
+
+        [HttpDelete("delete/{userId}")]
+        public async Task<ActionResult> DeleteStudent(int userId){
+            var student = await _context.studentData.FindAsync(userId);
+            if (student is null) return NotFound($"We can't find any student with studentID: {userId}");
+
+            _context.studentData.Remove(student);
+            if (await _context.SaveChangesAsync() > 0)
+        {
+            return NoContent();
+        }
+        return StatusCode(500, "Internal Server Error");
+        }
         //---------------------------------------------------
     }

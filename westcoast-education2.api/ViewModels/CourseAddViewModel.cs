@@ -6,10 +6,9 @@ namespace westcoast_education2.api.ViewModels;
 
     public class CourseAddViewModel
     {
-        [Required(ErrorMessage = "CourseId required")]
-        public int Id { get; set; }
 
         [Required(ErrorMessage = "CourseNumber required")]
+        [StringLength(6)]
         public string? courseNumber { get; set; }
 
         [Required(ErrorMessage = "NameOfCourse required")]
