@@ -1,0 +1,125 @@
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using westcoast_education2.api.Data;
+using westcoast_education2.api.Models;
+
+namespace westcoast_education2.api.Controllers
+{
+    [ApiController]
+    [Route("api/c1/courseName")]
+    public class NameOfCourseController : ControllerBase
+    {
+        private readonly WestCoastEducationContext _context;
+        public NameOfCourseController(WestCoastEducationContext context){
+            _context = context;
+        }
+
+        [HttpGet("listall")]
+        public async Task<ActionResult> ListAll(){
+            var result = await _context.coursesNameData
+            .Select(c => new{
+                Id = c.Id,
+                name = c.name
+            })
+            .ToListAsync();
+            
+            return Ok(result);
+        }
+        //--------------------------------------------------
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetById(int id){
+            var result = await _context.coursesNameData
+            .Select(c => new{
+                Id = c.Id,
+                name = c.name
+            })
+            .SingleOrDefaultAsync(c => c.Id == id);
+            return Ok(result);
+        }
+        //--------------------------------------------------
+
+        [HttpGet("name/{name}/courses")]
+        public async Task<ActionResult> CourseList(string name){
+            var result = await _context.coursesNameData
+            .Select(c => new {
+                Id = c.Id,
+                name = c.name,
+
+                Courses = c.Courses.Select(v => new{
+                    Id = v.Id,
+                    name = $"{v.courseName.name} {v.teacher} {v.placeStudy} {v.startDate} {v.endDate}"
+                }).ToList(),
+
+
+                StudentsCourses = c.StudentsCourses.Select(v => 
+                new{
+                    userId = v.userId,
+                    name = $"{v.firstName} {v.lastName} {v.personNu} {v.courseName.name}"
+
+                }).ToList(),
+
+
+                TeachersCourses = c.TeachersCourses.Select(v => 
+                new{
+                    TUserId = v.TUserId,
+                    name = $"{v.firstName} {v.lastName}  {v.courseName.name}"
+
+                }).ToList()
+            })
+            .SingleOrDefaultAsync(n => n.name.ToUpper().Trim() == name.ToUpper().Trim());
+            return Ok (result);
+        }
+        //--------------------------------------------------
+
+        [HttpPost("addNameOfCourse")]
+        public async Task<ActionResult> AddNameOfCourse(string name){
+            if(await _context.coursesNameData.SingleOrDefaultAsync(
+                n => n.name.ToLower().Trim() == name.ToLower().Trim()) is not null)
+                {
+                    return BadRequest ($"We have already registered a course with name {name} ");
+                }
+                var courseName = new CourseNameModel{ name = name.Trim()};
+                await _context.coursesNameData.AddAsync(courseName);
+                if(await _context.SaveChangesAsync() > 0)
+                {
+                    return CreatedAtAction(nameof(GetById),
+                    new {Id = courseName.Id},
+                    new {Id = courseName.Id, name = courseName.name}
+                    );
+                }
+                return StatusCode (500, "Internet Server Error");
+        }
+        //--------------------------------------------------
+
+        [HttpPut("updateNameOfCourse/{Id}")]
+        public async Task<ActionResult> UpdateNameOfCourse(int Id, string name){
+            var courseName = await _context.coursesNameData.FindAsync(Id);
+            if (courseName is  null) return NotFound($"We cannot find a course in the system with this name ");
+
+            courseName.name = name;
+            _context.coursesNameData.Update(courseName);
+            if (await _context.SaveChangesAsync() > 0){
+                return NoContent();
+            }
+            return StatusCode(500, "Internet Server Error");
+        }
+        //--------------------------------------------------
+
+        [HttpDelete("deleteNameOfCourse/{Id}")]
+        public async Task<ActionResult> DeleteNameOfCourse(int Id){
+            var courseName = await _context.coursesNameData.FindAsync(Id);
+            if (courseName is null) return NotFound($"We can't find any course with this Id {Id}");
+
+            _context.coursesNameData.Remove(courseName);
+            if (await _context.SaveChangesAsync() > 0)
+        {
+            return NoContent();
+        }
+        return StatusCode(500, "Internal Server Error");
+        }
+        //---------------------------------------------------
+
+    }
+}
