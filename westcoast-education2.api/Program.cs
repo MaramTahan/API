@@ -28,7 +28,12 @@ var services = scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<WestCoastEducationContext>();
+    var userMgr = services.GetRequiredService<UserManager<UserModel>>();
+    var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+
     await context.Database.MigrateAsync();
+    
+    await SeedData.LoadRolesAndUsers(userMgr, roleMgr);
     await SeedData.LoadCoursesData(context);
     await SeedData.LoadCoursesNameData(context);
     await SeedData.LoadStudentData(context);

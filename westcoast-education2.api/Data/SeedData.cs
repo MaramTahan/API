@@ -1,11 +1,50 @@
 
 using System.Text.Json;
+using Microsoft.AspNetCore.Identity;
 using westcoast_education2.api.Models;
 
 namespace westcoast_education2.api.Data;
 
     public static class SeedData
     {
+        public static async Task LoadRolesAndUsers(UserManager<UserModel> userManager, RoleManager<IdentityRole> roleManager)
+        {
+             if (!roleManager.Roles.Any()){
+                var admin = new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" };
+                var user = new IdentityRole { Name = "User", NormalizedName = "USER" };
+
+                /*If the application need more role like the (sales) we can added it ex: 
+                var sales = new IdentityRole { Name = "Sales", NormalizedName = "SALES" };*/
+
+                await roleManager.CreateAsync(admin);
+                await roleManager.CreateAsync(user);
+            }
+
+            if (!userManager.Users.Any())
+        {
+            var admin = new UserModel
+            {
+                UserName = "veronica.sandkvist@varnamo.se",
+                Email = "veronica.sandkvist@varnamo.se",
+                firstName = "veronica",
+                lastName = "sandkvist"
+            };
+
+            await userManager.CreateAsync(admin, "Pa$$w0rd");
+            await userManager.AddToRolesAsync(admin, new[] { "Admin", "User" });
+
+            var user = new UserModel
+            {
+                UserName = "michael@gmail.com",
+                Email = "michael@gmail.com",
+                firstName = "Michael",
+                lastName = "Gustavsson"
+            };
+
+            await userManager.CreateAsync(user, "Pa$$w0rd");
+            await userManager.AddToRoleAsync(user, "User");
+        }
+        }
         public static async Task LoadCoursesData(WestCoastEducationContext context){
         var options = new JsonSerializerOptions
     {
