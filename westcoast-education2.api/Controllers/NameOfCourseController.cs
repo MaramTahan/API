@@ -8,7 +8,7 @@ namespace westcoast_education2.api.Controllers
 {
     [ApiController]
     [Route("api/c1/courseName")]
-    public class NameOfCourseController : ControllerBase
+    public class NameOfCourseController : ControllerBase, IBaseApiControllers
     {
         private readonly WestCoastEducationContext _context;
         public NameOfCourseController(WestCoastEducationContext context){
@@ -28,7 +28,7 @@ namespace westcoast_education2.api.Controllers
         }
         //--------------------------------------------------
 
-        [HttpGet("{id}")]
+        [HttpGet("getbyId/{id}")]
         public async Task<ActionResult> GetById(int id){
             var result = await _context.coursesNameData
             .Select(c => new{
@@ -40,8 +40,8 @@ namespace westcoast_education2.api.Controllers
         }
         //--------------------------------------------------
 
-        [HttpGet("name/{name}/courses")]
-        public async Task<ActionResult> CourseList(string name){
+        [HttpGet("getbyname/{name}/courses")]
+        public async Task<ActionResult> List(string name){
             var result = await _context.coursesNameData
             .Select(c => new {
                 Id = c.Id,
@@ -74,7 +74,7 @@ namespace westcoast_education2.api.Controllers
         //--------------------------------------------------
 
         [HttpPost("addNameOfCourse")]
-        public async Task<ActionResult> AddNameOfCourse(string name){
+        public async Task<ActionResult> Add(string name){
             if(await _context.coursesNameData.SingleOrDefaultAsync(
                 n => n.name.ToLower().Trim() == name.ToLower().Trim()) is not null)
                 {
@@ -94,7 +94,7 @@ namespace westcoast_education2.api.Controllers
         //--------------------------------------------------
 
         [HttpPut("updateNameOfCourse/{Id}")]
-        public async Task<ActionResult> UpdateNameOfCourse(int Id, string name){
+        public async Task<ActionResult> Update(int Id, string name){
             var courseName = await _context.coursesNameData.FindAsync(Id);
             if (courseName is  null) return NotFound($"We cannot find a course in the system with this name ");
 
@@ -108,7 +108,7 @@ namespace westcoast_education2.api.Controllers
         //--------------------------------------------------
 
         [HttpDelete("deleteNameOfCourse/{Id}")]
-        public async Task<ActionResult> DeleteNameOfCourse(int Id){
+        public async Task<ActionResult> Delete(int Id){
             var courseName = await _context.coursesNameData.FindAsync(Id);
             if (courseName is null) return NotFound($"We can't find any course with this Id {Id}");
 
@@ -121,5 +121,36 @@ namespace westcoast_education2.api.Controllers
         }
         //---------------------------------------------------
 
-    }
+  Task<IActionResult> IBaseApiControllers.Add(string name)
+  {
+   throw new NotImplementedException();
+  }
+
+  Task<IActionResult> IBaseApiControllers.Delete(int Id)
+  {
+   throw new NotImplementedException();
+  }
+
+  Task<IActionResult> IBaseApiControllers.GetById(int Id)
+  {
+   throw new NotImplementedException();
+  }
+
+  Task<IActionResult> IBaseApiControllers.ListAll()
+  {
+   throw new NotImplementedException();
+  }
+
+  Task<IActionResult> IBaseApiControllers.List(string name)
+  {
+   throw new NotImplementedException();
+  }
+
+  Task<IActionResult> IBaseApiControllers.Update(int Id, string name)
+  {
+   throw new NotImplementedException();
+  }
+  //---------------------------------------------------
+
+ }
 }

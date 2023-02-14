@@ -18,8 +18,8 @@ namespace westcoast_education2.api.Controllers;
  }
 
  //http://localhost:5004/api/c1/courses
- [HttpGet()]
-        public async Task<ActionResult> List(){
+ [HttpGet("listall")]
+        public async Task<ActionResult> ListAll(){
             var result = await _context.coursesData
             .Include(c => c.courseName)
             .Select(v => new CoursesListViewModel{
@@ -38,7 +38,7 @@ namespace westcoast_education2.api.Controllers;
 
         //---------------------------------------------------
 
-        [HttpGet("{id}")]
+        [HttpGet("getbyId/{id}")]
         //http://localhost:5004/api/c1/courses/5
         public async Task<ActionResult> GetById(int id){
             var result = await _context.coursesData
@@ -59,7 +59,7 @@ namespace westcoast_education2.api.Controllers;
 
          //---------------------------------------------------
 
-        [HttpGet("courseno/{courseNumber}")]
+        [HttpGet("getbycourseno/{courseNumber}")]
         public async Task<ActionResult> GetBycourseNumber(string courseNumber){
             var result = await _context.coursesData
             .Include(c => c.courseName)
@@ -78,7 +78,7 @@ namespace westcoast_education2.api.Controllers;
 
          //---------------------------------------------------
 
-        [HttpGet("name/{nameId}")]
+        [HttpGet("getbyname/{nameId}")]
         public async Task<ActionResult> GetByName(string nameId){
             var result = await _context.coursesData
             .Include(c => c.courseName)
@@ -98,7 +98,7 @@ namespace westcoast_education2.api.Controllers;
 
          //---------------------------------------------------
 
-        [HttpGet("startdate/{startDate}")]
+        [HttpGet("getbystartdate/{startDate}")]
         public async Task<ActionResult> GetByStartDate(string startDate){
             var result = await _context.coursesData
             .Include(c => c.courseName)
@@ -119,7 +119,7 @@ namespace westcoast_education2.api.Controllers;
         //---------------------------------------------------
 
         [HttpPost("addCourse")]
-        public async Task<ActionResult>  AddCourse(CourseAddViewModel model){
+        public async Task<ActionResult>  Add(CourseAddViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the course in the system");
 
             //We need to check that the course is not already registered in the system...
@@ -147,8 +147,8 @@ namespace westcoast_education2.api.Controllers;
 
          //---------------------------------------------------
 
-        [HttpPut("update/{Id}")]
-        public async Task<ActionResult> UpdateCourse(int Id, CourseUpdateViewModel model){
+        [HttpPut("updateCourse/{Id}")]
+        public async Task<ActionResult> Update(int Id, CourseUpdateViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the course in the system");
 
             var course = await _context.coursesData.FindAsync(Id);
@@ -173,7 +173,7 @@ namespace westcoast_education2.api.Controllers;
 
          //-----------------------------------------------------
 
-        [HttpPatch("fullybooked/{Id}")]
+        [HttpPatch("markAsFullybooked/{Id}")]
         //go to database for mark course as fully booked
         public async Task<ActionResult> MarkAsFullyBooked(int Id){
             var course = await _context.coursesData.FindAsync(Id);
@@ -191,7 +191,7 @@ namespace westcoast_education2.api.Controllers;
 
         //------------------------------------------------------
         
-        [HttpPatch("available/{Id}")]
+        [HttpPatch("markAsAvailable/{Id}")]
         public async Task<ActionResult> MarkAsAvailable(int Id){
             var course = await _context.coursesData.FindAsync(Id);
             if (course is null) return NotFound($"We can't find any course with courseID: {Id}");
@@ -205,8 +205,8 @@ namespace westcoast_education2.api.Controllers;
         }
         //---------------------------------------------------
 
-        [HttpDelete("delete/{Id}")]
-        public async Task<ActionResult> DeleteCourse(int Id){
+        [HttpDelete("deleteCourse/{Id}")]
+        public async Task<ActionResult> Delete(int Id){
             var course = await _context.coursesData.FindAsync(Id);
             if (course is null) return NotFound($"We can't find any course with courseID: {Id}");
 

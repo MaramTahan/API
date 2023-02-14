@@ -70,3 +70,15 @@
 /Users/maramtahan/Desktop/API/westcoast-education2.api/obj/Debug/net7.0/westcoast-education2.api.pdb
 /Users/maramtahan/Desktop/API/westcoast-education2.api/obj/Debug/net7.0/westcoast-education2.api.genruntimeconfig.cache
 /Users/maramtahan/Desktop/API/westcoast-education2.api/obj/Debug/net7.0/ref/westcoast-education2.api.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

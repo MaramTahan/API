@@ -18,8 +18,8 @@ namespace westcoast_education2.api.Controllers;
     }
 
         //http://localhost:5004/api/teachers
-        [HttpGet()]
-        public async Task<ActionResult> List(){
+        [HttpGet("listall")]
+        public async Task<ActionResult> ListAll(){
             var result = await _context.teacherData
             .Include(c => c.courseName)
             .Select(v => new TeachersListViewModel{
@@ -38,7 +38,7 @@ namespace westcoast_education2.api.Controllers;
         //---------------------------------------------------
 
         //http://localhost:5004/api/teachers/330
-        [HttpGet("{TUserId}")]
+        [HttpGet("getbyId/{TUserId}")]
         public async Task<ActionResult> GetByUserId(int TUserId){
             var result = await _context.teacherData
             .Include(c => c.courseName)
@@ -57,7 +57,7 @@ namespace westcoast_education2.api.Controllers;
 
         //---------------------------------------------------
 
-        [HttpGet("email/{email}")]
+        [HttpGet("getbyemail/{email}")]
         public async Task<ActionResult> GetByEmail(string email){
             var result = await _context.teacherData
             .Include(c => c.courseName)
@@ -77,7 +77,7 @@ namespace westcoast_education2.api.Controllers;
         //---------------------------------------------------
 
         [HttpPost("addTeacher")]
-        public async Task<ActionResult> AddTeacher(TeacherAddViewModel model){
+        public async Task<ActionResult> Add(TeacherAddViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to store the teacher in the system");
 
             var exists = await _context.teacherData.SingleOrDefaultAsync(c=> c.email!.ToUpper().Trim() == model.email!.ToUpper().Trim());
@@ -104,7 +104,7 @@ namespace westcoast_education2.api.Controllers;
         //---------------------------------------------------
 
         [HttpPut("updateteacher/{TUserId}")]
-        public async Task<ActionResult> UpdateTeacher(int TUserId, TeacherUpdateViewModel model){
+        public async Task<ActionResult> Update(int TUserId, TeacherUpdateViewModel model){
             if (!ModelState.IsValid) return BadRequest("Information is missing to be able to updater the teacher in the system");
 
             var teacher = await _context.teacherData.FindAsync(TUserId);
@@ -141,8 +141,8 @@ namespace westcoast_education2.api.Controllers;
             return Ok(result);
         }
         //---------------------------------------------------
-        [HttpDelete("delete/{TUserId}")]
-        public async Task<ActionResult> DeleteTeacher(int TUserId){
+        [HttpDelete("deleteteacher/{TUserId}")]
+        public async Task<ActionResult> Delete(int TUserId){
             var teacher = await _context.teacherData.FindAsync(TUserId);
             if (teacher is null) return NotFound($"We can't find any teacher with teacherID: {TUserId}");
 

@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using westcoast_education2.api.Data;
+using westcoast_education2.api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WestCoastEducationContext>(options => {
     options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));
 });
+
+builder.Services.AddIdentityCore<UserModel>()
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<WestCoastEducationContext>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
