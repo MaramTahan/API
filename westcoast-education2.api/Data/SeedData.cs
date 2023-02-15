@@ -24,10 +24,10 @@ namespace westcoast_education2.api.Data;
         {
             var admin = new UserModel
             {
-                UserName = "veronica.sandkvist@varnamo.se",
-                Email = "veronica.sandkvist@varnamo.se",
-                firstName = "veronica",
-                lastName = "sandkvist"
+                UserName = "michael@gmail.com",
+                Email = "michael@gmail.com",
+                firstName = "Michael",
+                lastName = "Gustavsson"
             };
 
             await userManager.CreateAsync(admin, "Pa$$w0rd");
@@ -35,10 +35,10 @@ namespace westcoast_education2.api.Data;
 
             var user = new UserModel
             {
-                UserName = "michael@gmail.com",
-                Email = "michael@gmail.com",
-                firstName = "Michael",
-                lastName = "Gustavsson"
+                UserName = "veronica.sandkvist@varnamo.se",
+                Email = "veronica.sandkvist@varnamo.se",
+                firstName = "veronica",
+                lastName = "sandkvist"
             };
 
             await userManager.CreateAsync(user, "Pa$$w0rd");

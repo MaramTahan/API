@@ -17,8 +17,12 @@ namespace westcoast_education2.api.Controllers;
    _context = context;
  }
 
+ ///<summary>
+ ///</summary>
+
  //http://localhost:5004/api/c1/courses
  [HttpGet("listall")]
+ //[Authorize("Roles = "Admin, User")]
         public async Task<ActionResult> ListAll(){
             var result = await _context.coursesData
             .Include(c => c.courseName)
