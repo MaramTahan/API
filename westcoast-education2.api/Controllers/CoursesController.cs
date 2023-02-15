@@ -17,8 +17,7 @@ namespace westcoast_education2.api.Controllers;
    _context = context;
  }
 
- ///<summary>
- ///</summary>
+
 
  //http://localhost:5004/api/c1/courses
  [HttpGet("listall")]
