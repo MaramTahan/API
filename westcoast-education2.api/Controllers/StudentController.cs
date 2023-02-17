@@ -8,12 +8,14 @@ using westcoast_education2.api.ViewModels;
 namespace westcoast_education2.api.Controllers;
 
     [ApiController]
-    [Route("api/students")]
+    [Route("api/c1/students")]
     public class StudentController : ControllerBase
     {
     private readonly WestCoastEducationContext _context;
-    public StudentController(WestCoastEducationContext context)
+    private readonly IConfiguration _config;
+    public StudentController(WestCoastEducationContext context, IConfiguration config)
     {
+        _config = config;
         _context = context;
     }
 

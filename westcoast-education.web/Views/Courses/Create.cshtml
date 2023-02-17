@@ -1,0 +1,46 @@
+@model westcoast_education.web.ViewModels.CoursesPostViewModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="page">
+    <h1>Add Course</h1>
+    <br>
+    <form class="shadow" asp-action="create" method="post">
+        <div class="form-control">
+            <label asp-for="courseNumber"></label>
+            <input asp-for="courseNumber" />
+        </div>
+        <div class="form-control">
+            <label asp-for="courseNumber"></label>
+            <input asp-for="courseNumber" />
+        </div>
+        <div class="form-control">
+            <label asp-for="nameOfCourse"> </label>
+            <select asp-for="nameOfCourse" asp-items="Model.nameOfCourse"></select>
+        </div>
+        <div class="form-control">
+            <label asp-for="endDate"> </label>
+            <input asp-for="endDate" />
+        </div>
+        <div class="form-control">
+            <label asp-for="teacher"> </label>
+            <input asp-for="teacher" />
+        </div>
+        <div class="form-control">
+            <label asp-for="placeStudy"> </label>
+            <input asp-for="placeStudy" />
+        </div>
+
+        <div class="form-control">
+            <div class="buttons-container">
+                <button type="Submit" class="btn-save"><i class="fa-sharp fa-solid fa-floppy-disk"></i>
+                    Save</button>
+                <a asp-action="index" asp-controller="Courses" class="btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Cancel</a>
+            </div>
+        </div>
+    </form>
+
+</div>

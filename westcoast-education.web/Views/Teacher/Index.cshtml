@@ -1,0 +1,61 @@
+@model IList<westcoast_education.web.ViewModels.Teachers.TeacherListViewModel>
+@{
+ Layout = "_LayoutAdmin";
+}
+
+<div class="page">
+      <h1>Teachers List</h1>
+      <br>
+      
+      <div class="table-container">
+         <div>
+            <a class="btn-add" asp-action="create" asp-controller="Teachers">Add Teacher<i class="fa-solid fa-plus"></i></a>
+        </div>
+      <table>
+         <thead>
+            <tr>
+               <th></th>
+               <th>FirstName</th>
+               <th>LastName</th>
+               <th>E-post</th>
+               <th>Phone.Nr</th>
+               <th>Address</th>
+               <th>CoursesTaught</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            @foreach (var user in Model){
+               <tr>
+                  @*<td class="edit-icon">
+                     <a asp-action="Edit" asp-controller="TeacherAdmin" asp-route-userId=@user.TUserId><i class="fa-solid fa-pen"></i></a>
+                  </td>*@
+                  <td>@user.firstName </td>
+                  <td>@user.lastName</td>
+                  <td>@user.email</td>
+                  <td>@user.phoneNumber</td>
+                  <td>@user.address</td>
+                  <td>@user.coursesTaughtName</td>
+                  
+                  <td class="delete-icon"><a asp-action="delete" asp-controller="Teacher" asp-route-userId=@user.TUserId><i class="fa-solid fa-trash"></i></a>
+                  </td>
+               </tr>
+            }
+         </tbody>
+         <tfoot>
+            <tr>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+            </tr>
+         </tfoot>
+      </table>
+   </div>
+
+   
+   </div>

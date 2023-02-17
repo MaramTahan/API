@@ -1,0 +1,50 @@
+@model westcoast_education.web.ViewModels.Students.StudentPostViewModel
+@{
+ Layout = "_LayoutAdmin";
+}
+
+
+<div class="page">
+    <h1>Add Student</h1>
+    <br>
+    <form class="shadow" asp-action="create" method="post">
+        <div class="form-control">
+            <label asp-for="firstName"></label>
+            <input asp-for="firstName" />
+        </div>
+        <div class="form-control">
+            <label asp-for="lastName"></label>
+            <input asp-for="lastName" />
+        </div>
+        <div class="form-control">
+            <label asp-for="personNu"> </label>
+            <input asp-for="personNu" />
+        </div>
+        <div class="form-control">
+            <label asp-for="email"> </label>
+            <input asp-for="email" />
+        </div>
+        <div class="form-control">
+            <label asp-for="phoneNumber"> </label>
+            <input asp-for="phoneNumber" />
+        </div>
+        <div class="form-control">
+            <label asp-for="address"> </label>
+            <input asp-for="address" />
+        </div>
+        <div class="form-control">
+            <label asp-for="coursesTakenName"> </label>
+            <select asp-for="coursesTakenName" asp-items="Model.coursesTakenName"></select>
+        </div>
+
+        <div class="form-control">
+            <div class="buttons-container">
+                <button type="Submit" class="btn-save"><i class="fa-sharp fa-solid fa-floppy-disk"></i>
+                    Save</button>
+                <a asp-action="index" asp-controller="Student" class="btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Cancel</a>
+            </div>
+        </div>
+    </form>
+
+</div>

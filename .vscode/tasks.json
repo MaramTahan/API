@@ -7,7 +7,7 @@
    "type": "process",
    "args": [
     "build",
-    "${workspaceFolder}/westcoast-education2.api/westcoast-education2.api.csproj",
+    "${workspaceFolder}/westcoast-education.web/westcoast-education.web.csproj",
     "/property:GenerateFullPaths=true",
     "/consoleloggerparameters:NoSummary"
    ],
@@ -19,7 +19,7 @@
    "type": "process",
    "args": [
     "publish",
-    "${workspaceFolder}/westcoast-education2.api/westcoast-education2.api.csproj",
+    "${workspaceFolder}/westcoast-education.web/westcoast-education.web.csproj",
     "/property:GenerateFullPaths=true",
     "/consoleloggerparameters:NoSummary"
    ],
@@ -33,7 +33,7 @@
     "watch",
     "run",
     "--project",
-    "${workspaceFolder}/westcoast-education2.api/westcoast-education2.api.csproj"
+    "${workspaceFolder}/westcoast-education.web/westcoast-education.web.csproj"
    ],
    "problemMatcher": "$msCompile"
   }

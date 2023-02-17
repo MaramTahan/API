@@ -82,3 +82,4 @@
 /Users/maramtahan/Desktop/API/westcoast-education2.api/obj/Debug/net7.0/westcoast-education2.api.pdb
 /Users/maramtahan/Desktop/API/westcoast-education2.api/obj/Debug/net7.0/westcoast-education2.api.genruntimeconfig.cache
 /Users/maramtahan/Desktop/API/westcoast-education2.api/obj/Debug/net7.0/ref/westcoast-education2.api.dll
+/Users/maramtahan/Desktop/API/westcoast-education2.api/bin/Debug/net7.0/westcoast-education2.api.staticwebassets.runtime.json

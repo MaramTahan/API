@@ -12,8 +12,10 @@ namespace westcoast_education2.api.Controllers;
     public class CoursesController : ControllerBase
     {
   private readonly WestCoastEducationContext _context;
- public CoursesController(WestCoastEducationContext context)
+ private readonly IConfiguration _config;
+ public CoursesController(WestCoastEducationContext context, IConfiguration config)
  {
+   _config = config;
    _context = context;
  }
 

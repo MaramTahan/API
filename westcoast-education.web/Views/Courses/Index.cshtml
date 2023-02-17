@@ -1,0 +1,59 @@
+@model IEnumerable<westcoast_education.web.ViewModels.CoursesListViewModel>
+@{
+ Layout = "_LayoutAdmin";
+}
+
+   <div class="page">
+      <h1>Courses Available</h1>
+      <br>
+      <div class="table-container">
+         <div>
+            <a class="btn-add" asp-action="create" asp-controller="Courses">Add Course<i class="fa-solid fa-plus"></i></a>
+        </div>
+      <table>
+         <thead>
+            <tr>
+               <th></th>
+               <th>Course.nr</th>
+               <th>Course</th>
+               <th>Start Date</th>
+               <th>End Date</th>
+               <th>Place Of Study</th>
+               <th>Teacher</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            @foreach (var course in Model){
+               <tr>
+                  @*<td class="edit-icon">
+                     <a asp-action="Edit" asp-controller="CoursesAdmin" asp-route-Id=@course.Id><i class="fa-solid fa-pen"></i></a>
+                  </td>*@
+                  <td>@course.courseNumber</td>
+                  <td>@course.nameOfCourse</td>
+                  <td>@course.startDate</td>
+                  <td>@course.endDate</td>
+                  <td>@course.placeStudy</td>
+                  <td>@course.teacher</td>
+                  <td class="delete-icon"><a asp-action="delete" asp-controller="Courses" asp-route-Id=@course.Id><i class="fa-solid fa-trash"></i></a>
+                  </td>
+               </tr>
+            }
+         </tbody>
+         <tfoot>
+            <tr>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+            </tr>
+         </tfoot>
+      </table>
+   </div>
+
+   
+   </div>

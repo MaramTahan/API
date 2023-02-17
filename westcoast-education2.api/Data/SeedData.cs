@@ -45,6 +45,7 @@ namespace westcoast_education2.api.Data;
             await userManager.AddToRoleAsync(user, "User");
         }
         }
+        //------------------------------------------------------
         public static async Task LoadCoursesData(WestCoastEducationContext context){
         var options = new JsonSerializerOptions
     {

@@ -1,0 +1,62 @@
+@model IList<westcoast_education.web.ViewModels.Students.StudentListViewModel>
+@{
+ Layout = "_LayoutAdmin";
+}
+
+<div class="page">
+      <h1>Students List</h1>
+      <br>
+      <div class="table-container">
+         <div>
+            <a class="btn-add" asp-action="create" asp-controller="Students">Add Student<i class="fa-solid fa-plus"></i></a>
+        </div>
+      <table>
+         <thead>
+            <tr>
+               <th></th>
+               <th>FirstName</th>
+               <th>LastName</th>
+               <th>personNu</th>
+               <th>E-post</th>
+               <th>Phone.Nr</th>
+               <th>Address</th>
+               <th>CoursesTakenName</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            @foreach (var user in Model){
+               <tr>
+                  @*<td class="edit-icon">
+                     <a asp-action="Edit" asp-controller="StudentAdmin" asp-route-userId=@user.userId><i class="fa-solid fa-pen"></i></a>
+                  </td>*@
+                  <td class ="td-student">@user.firstName</td>
+                  <td class ="td-student">@user.lastName</td>
+                  <td class ="td-student">@user.personNu</td>
+                  <td class ="td-student">@user.email</td>
+                  <td class ="td-student">@user.phoneNumber</td>
+                  <td class ="td-student">@user.address</td>
+                  <td class ="td-student">@user.coursesTakenName</td>
+
+                  <td class="delete-icon"><a asp-action="delete" asp-controller="Student" asp-route-userId=@user.userId ><i class="fa-solid fa-trash"></i></a>
+                  </td>
+               </tr>
+            }
+         </tbody>
+         <tfoot>
+            <tr>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+                     <td>&nbsp;</td>
+            </tr>
+         </tfoot>
+      </table>
+   </div>
+
+   
+   </div>

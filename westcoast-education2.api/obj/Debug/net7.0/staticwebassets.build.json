@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "TA/cclhyvnJsPQSzS9BfoilDpZRwURz/3LBn/g0RJDM=",
+  "Hash": "PGyLqjAOMHvl/umVaxqFtZY2gOqkmv0sfzMr78uJI/w=",
   "Source": "westcoast-education2.api",
   "BasePath": "_content/westcoast-education2.api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "westcoast-education2.api/wwwroot",
+      "Source": "westcoast-education2.api",
+      "ContentRoot": "/Users/maramtahan/Desktop/API/westcoast-education2.api/wwwroot/",
+      "BasePath": "_content/westcoast-education2.api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/maramtahan/Desktop/API/westcoast-education2.api/wwwroot/.DS_Store",
+      "SourceId": "westcoast-education2.api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maramtahan/Desktop/API/westcoast-education2.api/wwwroot/",
+      "BasePath": "_content/westcoast-education2.api",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
+      "Identity": "/Users/maramtahan/Desktop/API/westcoast-education2.api/wwwroot/images/pexels-pic.jpg",
+      "SourceId": "westcoast-education2.api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/maramtahan/Desktop/API/westcoast-education2.api/wwwroot/",
+      "BasePath": "_content/westcoast-education2.api",
+      "RelativePath": "images/pexels-pic.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/pexels-pic.jpg"
+    }
+  ]
 }

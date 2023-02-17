@@ -7,7 +7,7 @@ using westcoast_education2.api.ViewModels.Account;
 namespace westcoast_education2.api.Controllers;
 
 [ApiController]
-[Route("api/account")]
+[Route("api/c1/account")]
 public class AccountController : ControllerBase
 {
     private readonly UserManager<UserModel> _userManager;

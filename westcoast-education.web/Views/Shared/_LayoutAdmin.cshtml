@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/table.css">
+    <link rel="stylesheet" href="~/css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Roboto+Condensed:ital@1&family=Rubik+Vinyl&family=Sofia&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Libre+Baskerville&family=Roboto+Condensed:ital@1&family=Rubik+Vinyl&family=Sofia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>@ViewData["Title"] - WestCoast Education</title>
+ </head>
+ <body>
+   <div class="name">
+      <h1 class="page-title">WestCoast <br> <span>Education</span></h1>
+   </div>
+
+   <div class="nav">
+    <ul class="navigation">
+        <li><a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house"></i></a></li>
+        <li><a asp-action="Index" asp-controller="Courses">Courses</a></li>
+        <li><a asp-action="Index" asp-controller="Student">Students</a></li>
+        <li><a asp-action="Index" asp-controller="Teacher">Teachers</a></li>
+    </ul>
+   </div>
+
+  <main>
+        @RenderBody()
+    </main> 
+ </body>
