@@ -21,5 +21,6 @@ namespace westcoast_education.web.ViewModels.Teachers;
         [Required(ErrorMessage = "Address required")]
         public string address { get; set; }
         
-        public List<SelectListItem> coursesTaughtName { get; set; }
+        public List<SelectListItem> coursesTaughtNames { get; set; }
+        public string coursesTaughtName { get; set; }
     }

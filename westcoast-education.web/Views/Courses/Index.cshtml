@@ -21,6 +21,7 @@
                <th>Place Of Study</th>
                <th>Teacher</th>
                <th></th>
+               
             </tr>
          </thead>
          <tbody>
@@ -29,14 +30,16 @@
                   @*<td class="edit-icon">
                      <a asp-action="Edit" asp-controller="CoursesAdmin" asp-route-Id=@course.Id><i class="fa-solid fa-pen"></i></a>
                   </td>*@
+                  <td></td>
                   <td>@course.courseNumber</td>
                   <td>@course.nameOfCourse</td>
                   <td>@course.startDate</td>
                   <td>@course.endDate</td>
                   <td>@course.placeStudy</td>
                   <td>@course.teacher</td>
-                  <td class="delete-icon"><a asp-action="delete" asp-controller="Courses" asp-route-Id=@course.Id><i class="fa-solid fa-trash"></i></a>
-                  </td>
+                  <td></td>
+                  @*<td class="delete-icon"><a asp-action="delete" asp-controller="Courses" asp-route-Id=@course.Id><i class="fa-solid fa-trash"></i></a>
+                  </td>*@
                </tr>
             }
          </tbody>

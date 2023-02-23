@@ -27,7 +27,7 @@ namespace westcoast_education.web.Controllers;
  public async Task<IActionResult> Index()
         {
           using var client = _httpClient.CreateClient();
-            var response = await client.GetAsync($"{_baseUrl}/students");
+            var response = await client.GetAsync($"{_baseUrl}/students/listall");
 
             if (!response.IsSuccessStatusCode) return Content("Oops something wrong!");
             var json = await response.Content.ReadAsStringAsync();
@@ -52,7 +52,7 @@ namespace westcoast_education.web.Controllers;
               }
 
               var student = new StudentPostViewModel();
-              student.coursesTakenName = courseNameList;
+              student.coursesTakenNames = courseNameList;
               return View ("Create", student);
         }
         //---------------------------------------------------
@@ -72,7 +72,7 @@ namespace westcoast_education.web.Controllers;
 
           using var client = _httpClient.CreateClient();
           var content = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, Application.Json);
-          var response = await client.PostAsync($"{_baseUrl}/students", content);
+          var response = await client.PostAsync($"{_baseUrl}/students/addstudent", content);
 
           if (response.IsSuccessStatusCode)
             {

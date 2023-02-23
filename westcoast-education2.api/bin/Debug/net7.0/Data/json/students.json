@@ -1,0 +1,68 @@
+[
+
+
+ {
+  "userId": 3300,
+  "firstName": "Emily ",
+  "lastName": "Smith",
+  "phoneNumber": "0723340511",
+  "email": "emily.smith@gmail.com",
+  "personNu": "19810102-1100",
+  "address":"Emily Smith - 12399 Main Street, Varberg",
+  "coursesTakenId": 1
+  },
+ 
+ 
+ {
+  "userId": 3301,
+  "firstName": "Michael",
+  "lastName": "Johnson",
+  "phoneNumber": "0723330056",
+  "email": " michael.johnson@outlook.com",
+  "personNu": "19820102-2200",
+  "address":"Michael Johnson - 45605 Park Avenue, Jonköping",
+  "coursesTakenId": 1
+ },
+ 
+ 
+ 
+ 
+ {
+  "userId": 3302,
+  "firstName": "Jessica",
+  "lastName": "Williams",
+  "phoneNumber": "0723776088",
+  "email": "  jessica.williams@yahoo.com",
+  "personNu": "19830102-3300",
+  "address":"essica Williams - 78944 Maple Street, Jonköping",
+  "coursesTakenId": 3
+ },
+ 
+ 
+ 
+ 
+ {
+  "userId": 3303,
+  "firstName": "Matthew",
+  "lastName": "Brown",
+  "phoneNumber": "0723220036",
+  "email": "  matthew.brown@hotmail.com",
+  "personNu": "19840102-4400",
+  "address":"Matthew Brown - 32112 Oak Street, Göteborg",
+  "coursesTakenId": 4
+ },
+ 
+ 
+ 
+ 
+ {
+  "userId": 3304,
+  "firstName": "Maram",
+  "lastName": "Tahan",
+  "phoneNumber": "0739842900",
+  "email": "  mera.tahan@gmail.com",
+  "personNu": "19850102-5500",
+  "address":"Maram Tahan - 43265 Nasaret, väröbacka",
+  "coursesTakenId": 2
+ }
+ ] 

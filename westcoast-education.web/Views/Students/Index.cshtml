@@ -30,6 +30,7 @@
                   @*<td class="edit-icon">
                      <a asp-action="Edit" asp-controller="StudentAdmin" asp-route-userId=@user.userId><i class="fa-solid fa-pen"></i></a>
                   </td>*@
+                  <td></td>
                   <td class ="td-student">@user.firstName</td>
                   <td class ="td-student">@user.lastName</td>
                   <td class ="td-student">@user.personNu</td>
@@ -37,9 +38,10 @@
                   <td class ="td-student">@user.phoneNumber</td>
                   <td class ="td-student">@user.address</td>
                   <td class ="td-student">@user.coursesTakenName</td>
+                  <td></td>
 
-                  <td class="delete-icon"><a asp-action="delete" asp-controller="Student" asp-route-userId=@user.userId ><i class="fa-solid fa-trash"></i></a>
-                  </td>
+                  @*<td class="delete-icon"><a asp-action="delete" asp-controller="Student" asp-route-userId=@user.userId ><i class="fa-solid fa-trash"></i></a>
+                  </td>*@
                </tr>
             }
          </tbody>

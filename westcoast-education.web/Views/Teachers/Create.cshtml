@@ -30,14 +30,14 @@
         </div>
         <div class="form-control">
             <label asp-for="coursesTaughtName"> </label>
-            <select asp-for="coursesTaughtName" asp-items="Model.coursesTaughtName"></select>
+            <select asp-for="coursesTaughtName" asp-items="Model.coursesTaughtNames"></select>
         </div>
 
         <div class="form-control">
             <div class="buttons-container">
                 <button type="Submit" class="btn-save"><i class="fa-sharp fa-solid fa-floppy-disk"></i>
                     Save</button>
-                <a asp-action="index" asp-controller="Teacher" class="btn-warning"><i
+                <a asp-action="Index" asp-controller="Teacher" class="btn-warning"><i
                         class="fa-solid fa-arrow-left"></i> Cancel</a>
             </div>
         </div>

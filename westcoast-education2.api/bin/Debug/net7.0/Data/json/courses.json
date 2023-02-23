@@ -1,0 +1,46 @@
+[
+ {
+  "Id": 1123,
+  "nameId": 1,
+  "courseNumber": "144650",
+  "teacher": "Michael Gustafsson",
+  "placeStudy": "Classroom",
+  "startDate":"28-08-2023",
+  "endDate": "28-09-2023"
+ },
+ 
+ 
+ {
+  "Id": 1124,
+  "nameId": 2,
+  "courseNumber": "144750",
+  "teacher": "Michael Gustafsson",
+  "placeStudy": "Classroom",
+  "startDate":"29-09-2023",
+  "endDate": "29-10-2023"
+ },
+ 
+ 
+ 
+ 
+ {
+  "Id": 1125,
+  "nameId": 3,
+  "courseNumber": "144850",
+  "teacher": "Malin Trofast",
+  "placeStudy": "Distance",
+  "startDate":"29-10-2023",
+  "endDate": "29-11-2023"
+ },
+ 
+ 
+ {
+  "Id": 1126,
+  "nameId": 4,
+  "courseNumber": "144950",
+  "teacher": "Malin Trofast",
+  "placeStudy": "Distance",
+  "startDate":"29-11-2023",
+  "endDate": "29-12-2023"
+ }
+ ] 

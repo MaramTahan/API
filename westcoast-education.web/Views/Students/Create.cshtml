@@ -34,14 +34,14 @@
         </div>
         <div class="form-control">
             <label asp-for="coursesTakenName"> </label>
-            <select asp-for="coursesTakenName" asp-items="Model.coursesTakenName"></select>
+            <select asp-for="coursesTakenName" asp-items="Model.coursesTakenNames"></select>
         </div>
 
         <div class="form-control">
             <div class="buttons-container">
                 <button type="Submit" class="btn-save"><i class="fa-sharp fa-solid fa-floppy-disk"></i>
                     Save</button>
-                <a asp-action="index" asp-controller="Student" class="btn-warning"><i
+                <a asp-action="Index" asp-controller="Student" class="btn-warning"><i
                         class="fa-solid fa-arrow-left"></i> Cancel</a>
             </div>
         </div>

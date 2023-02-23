@@ -19,7 +19,7 @@ namespace westcoast_education2.api.Controllers;
         _context = context;
     }
 
-        //http://localhost:5004/api/teachers
+        //http://localhost:5004/api/c1/teachers
         [HttpGet("listall")]
         public async Task<ActionResult> ListAll(){
             var result = await _context.teacherData

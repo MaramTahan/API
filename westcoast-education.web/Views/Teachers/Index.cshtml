@@ -30,15 +30,17 @@
                   @*<td class="edit-icon">
                      <a asp-action="Edit" asp-controller="TeacherAdmin" asp-route-userId=@user.TUserId><i class="fa-solid fa-pen"></i></a>
                   </td>*@
+                  <td></td>
                   <td>@user.firstName </td>
                   <td>@user.lastName</td>
                   <td>@user.email</td>
                   <td>@user.phoneNumber</td>
                   <td>@user.address</td>
                   <td>@user.coursesTaughtName</td>
+                  <td></td>
                   
-                  <td class="delete-icon"><a asp-action="delete" asp-controller="Teacher" asp-route-userId=@user.TUserId><i class="fa-solid fa-trash"></i></a>
-                  </td>
+                  @*<td class="delete-icon"><a asp-action="delete" asp-controller="Teacher" asp-route-userId=@user.TUserId><i class="fa-solid fa-trash"></i></a>
+                  </td>*@
                </tr>
             }
          </tbody>

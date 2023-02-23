@@ -1,0 +1,23 @@
+[
+ {
+  "TUserId": 330,
+  "firstName": "Michael ",
+  "lastName": "Gustafsson",
+  "phoneNumber": "0723550511",
+  "email": "michael.gustavsson@softtech-dev.se",
+  "address":"Michael Gustafsson - 12366 Main Street, Jonköping",
+  "coursesTaughtId": 1
+  },
+
+
+ {
+  "TUserId": 340,
+  "firstName": "Malin ",
+  "lastName": "Trofast",
+  "phoneNumber": "0370378024",
+  "email": "malin.trofast.gunnarsson@varnamo.se",
+  "address":"Malin Trofast  - 75589 Pine Avenue, Varnamo",
+  "coursesTaughtId": 3
+ }
+
+ ] 

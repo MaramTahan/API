@@ -11,7 +11,8 @@ namespace westcoast_education.web.ViewModels;
         [DisplayName("courseNumber")]
         public string courseNumber { get; set; }
 
-        public List<SelectListItem> nameOfCourse { get; set; }
+        public List<SelectListItem> nameOfCourses { get; set; }
+        public string nameOfCourse { get; set; }
 
         [Required(ErrorMessage = "StartDate required")]
         [DisplayName("startDate")]
